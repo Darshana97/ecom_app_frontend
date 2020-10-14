@@ -11,7 +11,7 @@ export class ProductService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getAllProducts(numberOfResults = 3) {
+  getAllProducts(numberOfResults = 10) {
     return this.http.get(this.SERVER_URL + "/products", {
       params: {
         limit: numberOfResults.toString(),
