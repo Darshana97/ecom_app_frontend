@@ -1,18 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
-
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ProductService {
+  private SERVER_URL = environment.SERVER_URL;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  showMessage(){
-    console.log("Service called");
+  getAllProducts(numberOfResults = 3) {
+    return this.http.get(this.SERVER_URL + "/products", {
+      params: {
+        limit: numberOfResults.toString(),
+      },
+    });
   }
-
-
 }

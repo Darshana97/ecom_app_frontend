@@ -7,9 +7,16 @@ import { ProductService } from "src/app/services/product.service";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
+  products: any[] = [];
+
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.showMessage();
+    this.productService
+      .getAllProducts()
+      .subscribe((prods: { count: Number; products: any[] }) => {
+        this.products = prods.products;
+        console.log(this.products);
+      });
   }
 }
