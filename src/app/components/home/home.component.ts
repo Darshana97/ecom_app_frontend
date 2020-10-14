@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
       .getAllProducts()
       .subscribe((prods: { count: Number; products: any[] }) => {
         this.products = prods.products;
-        console.log(this.products);
       });
   }
 }
